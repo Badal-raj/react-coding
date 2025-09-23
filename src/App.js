@@ -1,23 +1,15 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+import { TabForm } from './TabFile/TabForm';
+
 function App() {
+  const [bgColor, setBgColor] = useState("No Effect")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="tab-form-container" style={{ background: `${bgColor === "Light" ? "aliceblue" : `${bgColor === "Dark" ? "darkseagreen" : "white"}`}` }}>
+      <TabForm 
+       setThemeColor = {setBgColor}
+      />
     </div>
   );
 }
