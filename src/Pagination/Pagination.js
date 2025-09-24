@@ -40,44 +40,46 @@ export const Pagiantion = () => {
     return (
         <>
             <h3 style={{ textAlign: "center" }}>Pagination</h3>
-            <div className="pagination-body">
-                <span
-                    className={currentPage === 0 ? "move-page-disable" : "move-page"}
-                    onClick={handlePrevClick}
-                >
-                    {"<<"}
-                </span>
-                {[...Array(total_pages).keys()].map((n, i) => (
-                    <span
-                        key={i}
-                        className={currentPage === i ? "selected-page" : "page-nummber"}
-                        onClick={() => handlePageSelection(n)}
-                    >
-                        {n + 1}
-                    </span>
-                )
-                )}
-                <span
-                    className={currentPage + 1 === total_pages ? "move-page-disable" : "move-page"}
-                    onClick={handleNextClick}
-                >
-                    {">>"}
-                </span>
-            </div>
-            <div className="page-container">
-                {!allProduct.length ? (<h4>No Product Found</h4>) : (
-                    allProduct.slice(start, end).map((d, index) => {
-                        return (
-                            <>
-                                <div key={index} className="harik product-container">
-                                    <img src={d.thumbnail} alt="img" className="img-style" />
-                                    <span className="title">{d.title}</span>
-                                </div>
-                            </>
+            {!allProduct.length ? (<h5 style={{ margin: "0 0 0 20px" }}>No Product Found</h5>) : (
+                <>
+                    <div className="pagination-body">
+                        <span
+                            className={currentPage === 0 ? "move-page-disable" : "move-page"}
+                            onClick={handlePrevClick}
+                        >
+                            {"<<"}
+                        </span>
+                        {[...Array(total_pages).keys()].map((n, i) => (
+                            <span
+                                key={i}
+                                className={currentPage === i ? "selected-page" : "page-nummber"}
+                                onClick={() => handlePageSelection(n)}
+                            >
+                                {n + 1}
+                            </span>
                         )
-                    })
-                )}
-            </div>
+                        )}
+                        <span
+                            className={currentPage + 1 === total_pages ? "move-page-disable" : "move-page"}
+                            onClick={handleNextClick}
+                        >
+                            {">>"}
+                        </span>
+                    </div>
+                    <div className="page-container">
+                        {allProduct.slice(start, end).map((d, index) => {
+                            return (
+                                <>
+                                    <div key={index} className="harik product-container">
+                                        <img src={d.thumbnail} alt="img" className="img-style" />
+                                        <span className="title">{d.title}</span>
+                                    </div>
+                                </>
+                            )
+                        })}
+                    </div>
+                </>
+            )}
         </>
     )
 }
